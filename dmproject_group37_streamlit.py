@@ -794,14 +794,14 @@ with tab1:
         
     # Create the bar plot
     fig_chain = px.bar(ABCDEats.groupby(['chain_count/order_count', 'customer_region_buckets']).size().reset_index(name='mean').round(3),
-                    x='customer_region_buckets',
-                    y='mean',
-                    color='chain_count/order_count',
-                    custom_data = ['chain_count/order_count'],
-                    color_continuous_scale=custom_scale,
-                    title='Number of Orders by Chain and Customer Region',
-                    labels={"customer_region_buckets": "Customer Region", "mean": "Number of Orders", "chain_count/order_count": "% Chain Count/Order Count"},
-                    category_orders={"customer_region_buckets": ["2", "4", "8", "0"]})
+                       x='customer_region_buckets',
+                       y='mean',
+                       color='chain_count/order_count',
+                       custom_data = ['chain_count/order_count'],
+                       color_continuous_scale=custom_scale,
+                       title='Number of Orders by Chain and Customer Region',
+                       labels={"customer_region_buckets": "Customer Region", "mean": "Number of Orders", "chain_count/order_count": "% Chain Count/Order Count"},
+                       category_orders={"customer_region_buckets": ["2", "4", "8", "0"]})
     fig_chain.update_layout(font=dict(family="Arial", size=12, color="black"), 
                             legend_title_text='% Chain Count/Order Count',
                             showlegend=True)
@@ -1074,13 +1074,13 @@ with tab2:
     
     # Create a bar chart of the average 'chain_count' by cluster
     fig_cluster_chain = px.bar(cluster_data.groupby('Cluster Name')['chain_count'].mean().reset_index(),
-                                x='Cluster Name',
-                                y='chain_count',
-                                title='Average Chain Count by Cluster',
-                                color='Cluster Name',
-                                color_discrete_sequence=clusters_palette,
-                                labels={"Cluster Name": "Cluster", "chain_count": "Average Chain Count"},
-                                category_orders={"Cluster Name": ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]})
+                               x='Cluster Name',
+                               y='chain_count',
+                               title='Average Chain Count by Cluster',
+                               color='Cluster Name',
+                               color_discrete_sequence=clusters_palette,
+                               labels={"Cluster Name": "Cluster", "chain_count": "Average Chain Count"},
+                               category_orders={"Cluster Name": ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]})
     fig_cluster_chain.update_layout(font=dict(family="Arial", size=12, color="black"), showlegend=False)
     fig_cluster_chain.update_traces(hovertemplate='<b>Cluster</b>: %{x}<br><b>Average Chain Count</b>: %{y:.2f}')
     col2.plotly_chart(fig_cluster_chain)
@@ -1183,17 +1183,19 @@ with tab2:
     
     # --------------------------------------------------------------------------------------------
     # Barplot chain_count/order_count by Cluster
-    
+    # Add a new column 'chain_count/order_count' to the dataset
+    cluster_data['chain_count/order_count'] = cluster_data['chain_count'] / (cluster_data['order_count'])
+        
     # Create the bar plot
     fig_chain_cluster = px.bar(cluster_data.groupby(['chain_count/order_count', 'Cluster Name']).size().reset_index(name='mean').round(3),
-                    x='Cluster Name',
-                    y='mean',
-                    color='chain_count/order_count',
-                    custom_data = ['chain_count/order_count'],
-                    color_continuous_scale=custom_scale,
-                    title='Number of Orders by Chain and Cluster',
-                    labels={"mean": "Number of Orders", "chain_count/order_count": "% Chain Count/Order Count", "Cluster Name": "Cluster"},
-                    category_orders={"Cluster Name": ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]})
+                               x='Cluster Name',
+                               y='mean',
+                               color='chain_count/order_count',
+                               custom_data = ['chain_count/order_count'],
+                               color_continuous_scale=custom_scale,
+                               title='Number of Orders by Chain and Cluster',
+                               labels={"mean": "Number of Orders", "chain_count/order_count": "% Chain Count/Order Count", "Cluster Name": "Cluster"},
+                               category_orders={"Cluster Name": ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"]})
     fig_chain_cluster.update_layout(font=dict(family="Arial", size=12, color="black"), showlegend=True)
     fig_chain_cluster.update_traces(hovertemplate='<b>Number of Orders</b>: %{y}<br><b>% Chain/Order</b>: %{customdata[0]:.2%}')
     st.plotly_chart(fig_chain_cluster)    
