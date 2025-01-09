@@ -1172,7 +1172,7 @@ with tab2:
     # Sunburst Plot | Customer Region, Last Promo, and Payment Method by Cluster
     fig_sunburst_cluster = px.sunburst(cluster_data,
                              path=['Cluster Name', 'customer_region_buckets', 'last_promo', 'payment_method'],
-                             title='Sankey Plot of Customer Region, Last Promo, and Payment Method by Cluster',
+                             title='Sunburst Plot of Customer Region, Last Promo, and Payment Method by Cluster',
                              color='Cluster Name',
                              color_discrete_sequence=['#7B8F3A', '#F0E5CB', '#ADC178', '#2C3E1F', '#909090'],
                              labels={"Cluster Name": "Cluster", "customer_region_buckets": "Customer Region", "payment_method": "Payment Method", "last_promo": "Last Promo"},
