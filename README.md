@@ -1,3 +1,9 @@
+<p align="center">
+   <a href="https://dm-project-abcdeats-group37.streamlit.app/">
+        <img src="./static/ABCDEats_Banner.png" alt="ABCDEats Banner" width="800">
+    </a>
+</p>
+
 # 🍕 ABCDEats Inc. - Data Mining Project Dashboard 🚀 ([Live App](https://dm-project-abcdeats-group37.streamlit.app/))
 
 This repository contains the Streamlit web application developed as the ***optional deployment part*** of the **Data Mining** project for the Master's in Data Science and Advanced Analytics at NOVA Information Management School (NOVA IMS).
